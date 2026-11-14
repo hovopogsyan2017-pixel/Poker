@@ -3,7 +3,6 @@ namespace PokerLibrary;
 
 public class Card
 {
-
     public static List<Card> cards = new List<Card>();
     public CoreSuids Suits { get; set; }
     public CardNumber Numbers { get; set; }

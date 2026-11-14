@@ -6,6 +6,5 @@ public enum Points
     Red=10,
     Green=25,
     Blue=100
-
 }
 

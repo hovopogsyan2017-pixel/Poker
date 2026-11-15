@@ -2,7 +2,6 @@
 
     public enum CardNumber
     {
-        Ace,
         Two,
         Three,
         Four,
@@ -14,6 +13,7 @@
         Ten,
         Jack,
         Queen,
-        King
+        King,
+        Ace
     }
 

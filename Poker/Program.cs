@@ -6,6 +6,10 @@ public static class Program
 {
     static void Main(string[] args)
     {
-        Game.Start();
+        using (var db = new PokerLibrary.Data.Context()) 
+        {
+            db.Database.EnsureCreated();
+        }
+            Game.Start();
     }
 }

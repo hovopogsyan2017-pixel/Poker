@@ -43,7 +43,7 @@ public class Dealer
         int size = cards.Count;
         for (int i = 0; i < 5; i++)
         {
-            int index = RandomNumberGenerator.GetInt32(Math.Abs(size));
+            int index = RandomNumberGenerator.GetInt32(Math.Abs(size-1));
             teableCards.Add(cards[index]);
             cards.RemoveAt(index);
         }

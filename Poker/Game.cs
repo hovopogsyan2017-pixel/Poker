@@ -31,9 +31,6 @@ public class Game
         dealer.Shafling();
         PrintCards(dealer);
     }
-
-
-    
     private static void PrintCardsInTeable(Dealer dealer)
     {
         WriteLine("Table Cards:");
@@ -49,7 +46,7 @@ public class Game
         for (int i = 0; i < quantity; i++)
         {
             int k = 0;
-            WriteLine($"Player {i + 1}: {players[i].Name} {players[i].SurName}, Balance: {players[i].balance}");
+            WriteLine($"Player {i + 1}: {players[i].FirstName} {players[i].LastName}, Balance: {players[i].balance}");
             while (k < 2)
             {
                 WriteLine($"Card {k}: {players[i].playerCards[k].Suits} of {players[i].playerCards[k].Numbers}");

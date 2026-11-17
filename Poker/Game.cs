@@ -97,6 +97,7 @@ public class Game
         BalanceTo_Up methodPay = BalanceTo_Up.ObjectForBalanceCard(cardPay, players[playerNumber - 1]);
         WriteLine("Input Money");
         decimal pay = decimal.Parse(ReadLine());
+        DbManager.BalanceToUpFromDb(playerNumber, pay);
         methodPay.Pay(pay);
     }
 

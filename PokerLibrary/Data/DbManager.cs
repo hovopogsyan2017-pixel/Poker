@@ -1,6 +1,6 @@
 ﻿namespace PokerLibrary.Data;
 
-public class DbManager
+public static class DbManager
 {
     public static void AddPlayerToDatabase(string FirstName, string LastName, decimal Balance, int id)
     {
@@ -12,25 +12,38 @@ public class DbManager
         }
     }
 
-    public void BalanceToUpFromDb(int id, decimal money)
+    public static void BalanceToUpFromDb(int id, decimal money)
     {
         using (var db = new Context())
         {
             var player = db.player.Find(id);
             if (player == null)
                 throw new ArgumentException("NO PLAYER");
-
             else
             {
-                player.balance += money;
+                player.balance += Math.Abs(money);
                 db.SaveChanges();
-
             }
         }
     }
 
-    public void 
+    public static void RemoveMoneyFromBalanceFromDb(int id, decimal money)
+    {
+        using (var db = new Context())
+        {
+            var player = db.player.Find(id);
+            if (player == null)
+                throw new ArgumentException("NO Player");
 
+            if (player.balance < money)
+                throw new ArgumentException("NO MONEY");
+            else
+            {
+                player.balance -= Math.Abs(money);
+                db.SaveChanges();
+            }
+        }
+    }
     public static List<Player> GetAllPlayer()
     {
         using (var db = new Context())
@@ -39,7 +52,7 @@ public class DbManager
         }
     }
 
-    public void RemovePlayerFromDb(int id)
+    public static void RemovePlayerFromDb(int id)
     {
         using (var db = new Context())
         {

@@ -1,5 +1,6 @@
 ﻿using PokerLibrary.BalanceTopUp;
 using static System.Console;
+using PokerLibrary.Data;
 namespace Poker;
 
 public static class Program
@@ -11,5 +12,9 @@ public static class Program
             db.Database.EnsureCreated();
         }
             Game.Start();
+
+    foreach( var pl in DbManager.GetAllPlayer())
+            WriteLine($"{pl.FirstName} - {pl.LastName} - {pl.balance} - {pl.id}");
+
     }
 }

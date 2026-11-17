@@ -1,5 +1,6 @@
 ﻿using PokerLibrary;
 using PokerLibrary.BalanceTopUp;
+using PokerLibrary.Data;
 using static System.Console;
 namespace Poker;
 
@@ -68,6 +69,7 @@ public class Game
                 string? SurName = ReadLine();
                 var newPlayer = new Player(player, SurName, 1500);
                 players.Add(newPlayer);
+                DbManager.AddPlayerToDatabase(player, SurName, 1500, i + 1);
             }
             dealer.CardsForPlayers(players);
             PrintPlayers(partistantsQuantity);

@@ -2,7 +2,7 @@
 
 public class DbManager
 {
-    public void AddPlayerToDatabase(string FirstName, string LastName, decimal Balance, int id)
+    public static void AddPlayerToDatabase(string FirstName, string LastName, decimal Balance, int id)
     {
         using (var db = new Context())
         {
@@ -10,10 +10,28 @@ public class DbManager
             db.player.Add(player);
             db.SaveChanges();
         }
-
     }
 
-    public List<Player> GetAllPlayer()
+    public void BalanceToUpFromDb(int id, decimal money)
+    {
+        using (var db = new Context())
+        {
+            var player = db.player.Find(id);
+            if (player == null)
+                throw new ArgumentException("NO PLAYER");
+
+            else
+            {
+                player.balance += money;
+                db.SaveChanges();
+
+            }
+        }
+    }
+
+    public void 
+
+    public static List<Player> GetAllPlayer()
     {
         using (var db = new Context())
         {

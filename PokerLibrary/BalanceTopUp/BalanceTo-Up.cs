@@ -18,7 +18,7 @@ public abstract class BalanceTo_Up : IBalanceToUp
         {
             "Arca" => new ArcaCard(_player),
             "PayPal" => new PayPal(_player),
-            "VisaCard" => new VisaCard(_player),
+            "Visa" => new VisaCard(_player),
             _ => throw new ArgumentException("Card Error")
         };
     }

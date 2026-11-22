@@ -1,7 +1,7 @@
 ﻿namespace PokerLibrary.Enums;
 
-    public enum CoreSuids
-    {
+public enum CoreSuids
+{
     Spades,
     Clubs,
     Diamonds,

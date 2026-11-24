@@ -6,11 +6,13 @@ public class PlayersLinkedList
     public Node? Tail { get; private set; }
     public Node? Current { get; private set; }
     public int Count { get; private set; }
+    public Dictionary<int, Player> historyRemovePlayers = new();
 
     #region Add
 
     public void Add(Player player)
     {
+
         var node = new Node(player);
         if (Head == null)
         {
@@ -33,11 +35,47 @@ public class PlayersLinkedList
 
         Count++;
     }
+    private Player FindTempHead(Table temp)
+    {
+        Player tempHead = null;
+        for (int i = 0; i < temp.playersLocations.Count; i++)
+        {
+            int playerId = temp.playersLocations[i];
+            if (historyRemovePlayers.ContainsKey(playerId))
+            {
+                tempHead = historyRemovePlayers[playerId];
+                return tempHead;
+            }
+            else continue;
+        }
+            return null;
+    }
+
+    public void AddPlayerThenRemove(Table temp)
+    {
+        Player tempHead = FindTempHead(temp);
+        
+
+        if (tempHead != null)
+        {
+            while (temp.playersLocations.Count != Count)
+            {
+                int index=0;
+                while (tempHead.id != temp.playersLocations[index])
+                    index++;
+
+
+
+            }
+
+        }
+
+    }
+
     #endregion
 
     public void MoveNext()
     {
-
         if (Current != null)
             Current = Current.Next;
 
@@ -65,9 +103,9 @@ public class PlayersLinkedList
             {
                 Node temp = Head;
                 while (temp.Next != Tail)
-                    temp = temp.Next;          
+                    temp = temp.Next;
 
-                temp.Next = Head;              
+                temp.Next = Head;
                 Tail = temp;
             }
 
@@ -83,12 +121,8 @@ public class PlayersLinkedList
         }
 
         Count--;
+        removePlayers.Add(player.id, player);
     }
-
-
-
-
     #endregion
-
 }
 

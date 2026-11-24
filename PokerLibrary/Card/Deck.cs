@@ -70,7 +70,7 @@ internal class Deck
         }
     }
 
-    public void CardsForTeable(Teable temp) 
+    public void CardsForTeable(Table temp) 
     {
         int countCardsInTeable = 5;
         for (int i = 0; i < countCardsInTeable; i++) 
@@ -79,7 +79,7 @@ internal class Deck
         }
     }
 
-    public void ClearTeable(Teable temp) 
+    public void ClearTeable(Table temp) 
     {
         int countCardsInTeable = temp.cardsForTeable.Count;
         for (int i = 0; i < countCardsInTeable; i++) 

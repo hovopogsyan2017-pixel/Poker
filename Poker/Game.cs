@@ -4,7 +4,7 @@ using PokerLibrary.Data;
 using PokerLibrary.LinkedListForControlQuPlayer;
 using static System.Console;
 
-namespace Poker;
+namespace Poker; //
 
 public static class Game
 {
@@ -16,6 +16,9 @@ public static class Game
 
     public static void Start()
     {
+        BackgroundColor = ConsoleColor.Cyan;
+        ForegroundColor = ConsoleColor.Black;
+        
         var dealer = new Dealer();
         var table = new Teable();
 
@@ -150,8 +153,8 @@ public static class Game
 
             if (p.First != null && p.Second != null)
             {
-                WriteLine($"   Card 1: {p.First.number} of {p.First.suids}");
-                WriteLine($"   Card 2: {p.Second.number} of {p.Second.suids}");
+                WriteLine($"   Card 1: {p.First.number} of {(char)p.First.suids}");
+                WriteLine($"   Card 2: {p.Second.number} of {(char)p.Second.suids}");
             }
             temp = temp.Next;
         }
@@ -169,7 +172,7 @@ public static class Game
         }
 
         foreach (var card in table.cardsForTeable)
-            WriteLine($"Table Card: {card.number} of {card.suids}");
+        WriteLine($"Table Card: {card.number} of {(char)card.suids}");
         WriteLine();
     }
 

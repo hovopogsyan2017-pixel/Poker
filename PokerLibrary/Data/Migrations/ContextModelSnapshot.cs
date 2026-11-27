@@ -4,7 +4,6 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PokerLibrary.Data;
-
 #nullable disable
 
 namespace PokerLibrary.Migrations
@@ -20,6 +19,50 @@ namespace PokerLibrary.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("PokerLibrary.Data.Bet", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<decimal>("Amount")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<int>("HandId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PlayerId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("HandId");
+
+                    b.HasIndex("PlayerId");
+
+                    b.ToTable("bet");
+                });
+
+            modelBuilder.Entity("PokerLibrary.Data.PokerHand", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("pokerHand");
+                });
 
             modelBuilder.Entity("PokerLibrary.Player", b =>
                 {
@@ -43,6 +86,49 @@ namespace PokerLibrary.Migrations
                     b.HasKey("id");
 
                     b.ToTable("player");
+                });
+
+            modelBuilder.Entity("PokerLibrary.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.HasKey("Id");
+
+                    b.ToTable("table");
+                });
+
+            modelBuilder.Entity("PokerLibrary.Data.Bet", b =>
+                {
+                    b.HasOne("PokerLibrary.Data.PokerHand", "Hand")
+                        .WithMany()
+                        .HasForeignKey("HandId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PokerLibrary.Player", "Player")
+                        .WithMany()
+                        .HasForeignKey("PlayerId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Hand");
+
+                    b.Navigation("Player");
+                });
+
+            modelBuilder.Entity("PokerLibrary.Data.PokerHand", b =>
+                {
+                    b.HasOne("PokerLibrary.Table", "table")
+                        .WithMany()
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("table");
                 });
 #pragma warning restore 612, 618
         }

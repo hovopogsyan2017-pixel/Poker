@@ -28,7 +28,6 @@ internal class Deck
         }
 
     }
-
     private Card RemoveCardInDeck()
     {
         int i = RandomNumberGenerator.GetInt32(_cardInDeck.Count);
@@ -47,7 +46,6 @@ internal class Deck
         temp.First = null;
         temp.Second = null;
     }
-
     public void CardsForPlayer(PlayersLinkedList players)
     {
         Node temp = players.Head;

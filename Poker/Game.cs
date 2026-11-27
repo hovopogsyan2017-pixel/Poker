@@ -4,7 +4,7 @@ using PokerLibrary.Data;
 using PokerLibrary.LinkedListForControlQuPlayer;
 using static System.Console;
 
-namespace Poker; //
+namespace Poker; 
 
 public static class Game
 {
@@ -20,7 +20,7 @@ public static class Game
         ForegroundColor = ConsoleColor.Black;
         
         var dealer = new Dealer();
-        var table = new Teable();
+        var table = new Table(players);
 
         PlayersForGame();
 
@@ -52,7 +52,7 @@ public static class Game
             }
         }
     }
-    private static void PlayRound(Dealer dealer, Teable table)
+    private static void PlayRound(Dealer dealer, Table table)
     {
         dealer.ClearCardInPlayers(players);
         dealer.ClearTeable(table);
@@ -161,7 +161,7 @@ public static class Game
         WriteLine();
     }
 
-    private static void PrintCardsInTeable(Teable table)
+    private static void PrintCardsInTeable(Table table)
     {
         WriteLine("=== Table Cards ===");
 

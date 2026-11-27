@@ -1,4 +1,5 @@
-﻿namespace PokerLibrary.LinkedListForControlQuPlayer;
+﻿using PokerLibrary.Data;
+namespace PokerLibrary.LinkedListForControlQuPlayer;
 
 public class PlayersLinkedList
 {
@@ -6,7 +7,6 @@ public class PlayersLinkedList
     public Node? Tail { get; private set; }
     public Node? Current { get; private set; }
     public int Count { get; private set; }
-    public Dictionary<int, Player> historyRemovePlayers = new();
 
     #region Add
 
@@ -35,45 +35,26 @@ public class PlayersLinkedList
 
         Count++;
     }
-    private Player FindTempHead(Table temp)
-    {
-        Player tempHead = null;
-        for (int i = 0; i < temp.playersLocations.Count; i++)
-        {
-            int playerId = temp.playersLocations[i];
-            if (historyRemovePlayers.ContainsKey(playerId))
-            {
-                tempHead = historyRemovePlayers[playerId];
-                return tempHead;
-            }
-            else continue;
-        }
-            return null;
-    }
-
-    public void AddPlayerThenRemove(Table temp)
-    {
-        Player tempHead = FindTempHead(temp);
-        
-
-        if (tempHead != null)
-        {
-            while (temp.playersLocations.Count != Count)
-            {
-                int index=0;
-                while (tempHead.id != temp.playersLocations[index])
-                    index++;
-
-
-
-            }
-
-        }
-
-    }
-
     #endregion
-
+    public void RefreshLinkedList(Table table)
+    {
+        Head = null;
+        Tail = null;
+        Current = null;
+        Count = 0;
+        string? error;
+        for (int i = 0; i < table.playersLocations.Count; i++)
+        {
+            int playerId = table.playersLocations[i];
+            foreach (var player in DbManager.GetPlayerFromDb(table.Id, out error))
+            {
+                if(playerId == player.id)
+                Add(player);
+                break;
+            }
+        }
+        Current = Head;
+    }
     public void MoveNext()
     {
         if (Current != null)
@@ -121,7 +102,6 @@ public class PlayersLinkedList
         }
 
         Count--;
-        removePlayers.Add(player.id, player);
     }
     #endregion
 }

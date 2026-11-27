@@ -27,7 +27,6 @@ public class Dealer
     public void ClearCardInPlayers(PlayersLinkedList players) 
     {
         deck.ClearCardInPlayers(players);
-
     }
 
 }

@@ -28,7 +28,6 @@ internal class Deck
         }
 
     }
-
     private Card RemoveCardInDeck()
     {
         int i = RandomNumberGenerator.GetInt32(_cardInDeck.Count);
@@ -47,7 +46,6 @@ internal class Deck
         temp.First = null;
         temp.Second = null;
     }
-
     public void CardsForPlayer(PlayersLinkedList players)
     {
         Node temp = players.Head;
@@ -70,7 +68,7 @@ internal class Deck
         }
     }
 
-    public void CardsForTeable(Teable temp) 
+    public void CardsForTeable(Table temp) 
     {
         int countCardsInTeable = 5;
         for (int i = 0; i < countCardsInTeable; i++) 
@@ -79,7 +77,7 @@ internal class Deck
         }
     }
 
-    public void ClearTeable(Teable temp) 
+    public void ClearTeable(Table temp) 
     {
         int countCardsInTeable = temp.cardsForTeable.Count;
         for (int i = 0; i < countCardsInTeable; i++) 

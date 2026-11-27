@@ -1,4 +1,5 @@
-﻿namespace PokerLibrary.LinkedListForControlQuPlayer;
+﻿using PokerLibrary.Data;
+namespace PokerLibrary.LinkedListForControlQuPlayer;
 
 public class PlayersLinkedList
 {
@@ -11,6 +12,7 @@ public class PlayersLinkedList
 
     public void Add(Player player)
     {
+
         var node = new Node(player);
         if (Head == null)
         {
@@ -34,10 +36,27 @@ public class PlayersLinkedList
         Count++;
     }
     #endregion
-
+    public void RefreshLinkedList(Table table)
+    {
+        Head = null;
+        Tail = null;
+        Current = null;
+        Count = 0;
+        string? error;
+        for (int i = 0; i < table.playersLocations.Count; i++)
+        {
+            int playerId = table.playersLocations[i];
+            foreach (var player in DbManager.GetPlayerFromDb(table.Id, out error))
+            {
+                if(playerId == player.id)
+                Add(player);
+                break;
+            }
+        }
+        Current = Head;
+    }
     public void MoveNext()
     {
-
         if (Current != null)
             Current = Current.Next;
 
@@ -65,9 +84,9 @@ public class PlayersLinkedList
             {
                 Node temp = Head;
                 while (temp.Next != Tail)
-                    temp = temp.Next;          
+                    temp = temp.Next;
 
-                temp.Next = Head;              
+                temp.Next = Head;
                 Tail = temp;
             }
 
@@ -84,11 +103,6 @@ public class PlayersLinkedList
 
         Count--;
     }
-
-
-
-
     #endregion
-
 }
 

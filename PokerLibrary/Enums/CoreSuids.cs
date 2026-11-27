@@ -2,9 +2,9 @@
 
 public enum CoreSuids
 {
-    Spades,
-    Clubs,
-    Diamonds,
-    Hearts
+    Spades = '♠',
+    Clubs = '♣',
+    Diamonds= '♦',
+    Hearts= '♥'
 }
 

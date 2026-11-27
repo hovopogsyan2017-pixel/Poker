@@ -16,18 +16,17 @@ public class Dealer
     {
         deck.CardsForPlayer(players);
     }
-    public void CardsForTeable(Teable temp) 
+    public void CardsForTeable(Table temp) 
     {
         deck.CardsForTeable(temp);
     }
-    public void ClearTeable(Teable temp) 
+    public void ClearTeable(Table temp) 
     {
         deck.ClearTeable(temp);
     }
     public void ClearCardInPlayers(PlayersLinkedList players) 
     {
         deck.ClearCardInPlayers(players);
-
     }
 
 }
